@@ -1,19 +1,30 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import { useBankAccountStore } from "./stores/bankAccounts";
+import HelloWorld from "./components/HelloWorld.vue";
+const store = useBankAccountStore();
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Stonix Bank" />
+      <h3>Balance: {{ store.balance }}</h3>
+      <h3>Pending Balance: {{ store.pendingBalance }}</h3>
+      <button @click="store.charge(5)">Buy coffee $5</button>
+      <h3>Processed</h3>
+      <ul>
+        <li v-for="item in store.processedTransactions" :key="item.id">
+          ${{ item.amount }}
+        </li>
+      </ul>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <h3>Pending</h3>
+      <ul>
+        <li v-for="item in store.pendingTransactions" :key="item.id">
+          ${{ item.amount }}
+        </li>
+      </ul>
     </div>
   </header>
 
