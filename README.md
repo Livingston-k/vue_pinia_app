@@ -1,2 +1,3 @@
-# vue_pinia_app
-A vue typescript application done with pinia state management.
+# Vue Typescript Project
+
+This project is built with Vue 3 in Vite,typescript,pinia .
